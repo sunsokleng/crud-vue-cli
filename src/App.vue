@@ -7,9 +7,9 @@
     <button @click="handleSave()">Save</button>
    
    <ul v-bind:key= 'list' v-for = "(list, index) in lists">
-     <button @click="handleDelete(index)">Delete</button>
-     {{list.firstname}} {{list.lastname}}
      
+     {{list.firstname}} {{list.lastname}}
+     <button @click="handleDelete(index)">Delete</button>
    </ul>
   </div>
 </template>
