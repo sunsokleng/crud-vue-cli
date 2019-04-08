@@ -1,28 +1,42 @@
-<template>
+ <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <label>FirstName</label>
+    <input type="text" v-model="firstname"><br/>
+    <label>LastName</label>
+    <input type="text" v-model="lastname"><br/>
+    <button @click="handleSave()">Save</button>
+   
+   <ul v-bind:key= 'list' v-for = "list in lists">
+     {{list.firstname}} {{list.lastname}}
+   </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+export default {  
+  data() {
+    return {
+      lists:[
+      {
+        firstname:'',
+        lastname: ''
+      }
+      ]
+    }
+  },
+  
+ methods:{
+   handleSave(){
+     this.lists.push({firstname:this.firstname, lastname:this.lastname});
+     this.handleClear();
+   },
+
+   handleClear(){
+     this.firstname = "";
+     this.lastname = "";
+   }
+ }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
