@@ -6,8 +6,10 @@
     <input type="text" v-model="lastname"><br/>
     <button @click="handleSave()">Save</button>
    
-   <ul v-bind:key= 'list' v-for = "list in lists">
+   <ul v-bind:key= 'list' v-for = "(list, index) in lists">
+     <button @click="handleDelete(index)">Delete</button>
      {{list.firstname}} {{list.lastname}}
+     
    </ul>
   </div>
 </template>
@@ -15,7 +17,9 @@
 <script>
 
 export default {  
+  
   data() {
+    
     return {
       lists:[
       {
@@ -32,6 +36,9 @@ export default {
      this.handleClear();
    },
 
+    handleDelete(index){
+      this.lists.splice(index,1);
+    },
    handleClear(){
      this.firstname = "";
      this.lastname = "";
